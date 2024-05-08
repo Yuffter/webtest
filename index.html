@@ -3,16 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <meta name="description" contnet="テストウェブサイト">
+        <title>情報理工学部　いばりつ企画</title>
+        <meta name="description" contnet="立命館大学　情報理工学部が企画したものです">
+        <link rel="stylesheet" href="destyle.css">
         <link rel="stylesheet" href="style.css">
         <script src="index.js"></script>
     </head>
     <body>
         <div>
-            <h1 class="title">ウェブサイト</h1>
-            <button onclick="clickButton()" id="btn_1">ボタン</button>
-            <h2>概要</h2>
+            <h1 class="title">自分の予定時間を検索</h1>
+            <div class="content">
+                <h4>ここに自分の受付番号を入力してください</h4>
+                <input type="text" class="numberInput">
+                <br>
+                <button onclick="clickButton()" id="btn_1">調べる</button>
+            </div>
         </div>
     </body>
 </html>
