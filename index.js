@@ -9,6 +9,10 @@ function startSearch() {
     myNumber = parseInt(numberInput.value);
     saveData();
 
+    //要素取得
+    let outputText = document.getElementsByClassName("output")[0];
+    let welcomeText = document.getElementsByClassName("welcome")[0];
+
     let durations = {};
 
     //APIからデータを取得
@@ -21,10 +25,6 @@ function startSearch() {
             durations[json[i].number] = json[i].duration;
         }
 
-        //html要素の取得
-        let outputText = document.getElementsByClassName("outputMain")[0];
-
-
         //スプレッドシートからその受付番号の予定時間を文字列で取得
         let numberInputText = durations[parseInt(numberInput.value)];
 
@@ -36,6 +36,8 @@ function startSearch() {
             afterHourAndMinute[0]++;
         }
 
+        outputText.style.border = "double 5px black";
+        welcomeText.innerHTML = "にお越しください";
         outputText.innerText = 
         `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')} ~ ${afterHourAndMinute[0]}:${afterHourAndMinute[1].toString().padStart(2,'0')}`;
     });

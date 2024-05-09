@@ -1,9 +1,30 @@
 @charset "utf-8";
 
+.wrapper {
+  text-align: center;
+  width: 100%;
+}
+
 .title {
-    text-align: center;
-    border-bottom: 1px;
-    margin-top: 50px;
+    border-top: 5px solid #853939;
+    border-bottom: 5px solid #853939;
+    background-color: #b95353;
+    margin-top: 20px;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+}
+
+.receiptNumber {
+  background-color: rgb(203, 205, 212);
+  text-decoration: underline 2px rgb(126, 142, 202);
+  text-underline-offset: 2px;
+}
+
+.halfNumber {
+  background-color: rgb(254, 237, 219);
+  text-decoration: underline 2px rgb(252, 202, 137);
+  text-underline-offset: 2px;
 }
 
 .numberInput {
@@ -12,17 +33,28 @@
     margin: 0 auto;
 }
 
+.inputExplanation {
+  margin-bottom: 10px;
+}
+
 .content {
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
 }
 
 .outputExplanation {
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .output {
     margin-top: 20px;
+    color: red;
+    display: inline-block;
+    padding: 10px;
+}
+
+.welcome {
+  margin-top: 10px;
 }
 
 .logo {

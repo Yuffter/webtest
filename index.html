@@ -10,19 +10,19 @@
         <script src="index.js"></script>
     </head>
     <body onload="onLoad()">
-        <div>
+        <div class="wrapper">
             <div id="particles-js"></div>
             <img src="./img/ritsumeikan-logo.png" alt="立命館大学ロゴ" class="logo" onclick="openUnivSite()">
             <h1 class="title">自分の予定時間を検索</h1>
             <div class="content">
-                <h4>ここに自分の受付番号を入力してください(半角数字でお願いします)</h4>
-                <input type="text" class="numberInput">
+                <h4 class="inputExplanation">ここに自分の<span class="receiptNumber">受付番号</span>を入力してください(<span class="halfNumber">半角数字<span>でお願いします)</h4>
+                <input type="text" class="numberInput" placeholder="受付番号を入力">
                 <br>
                 <a class="btn btn-border" onclick="startSearch()" id="btn_1"><span>調べる</span></a>
 
                 <h3 class="outputExplanation">↓↓ここに予定時刻が表示されます↓↓</h3>
-                <h3 class="output">
-                    <span style="color: red;" class="outputMain">00:00から00:00</span>にお越しください</h3>
+                <h1 class="output"></h3>
+                <h4 class="welcome"></h4>
             </div>
         </div>
     </body>
