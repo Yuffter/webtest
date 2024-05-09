@@ -3,9 +3,10 @@ const interval = 10;
 let myNumber = -1;
 
 function startSearch() {
-    if (document.getElementsByClassName("numberInput")[0].value == "") return;
+    let numberInput = document.getElementsByClassName("numberInput")[0];
+    if (numberInput.value == "") return;
 
-    myNumber = parseInt(document.getElementsByClassName("numberInput")[0].value);
+    myNumber = parseInt(numberInput.value);
     saveData();
 
     let durations = {};
@@ -22,7 +23,7 @@ function startSearch() {
 
         //html要素の取得
         let outputText = document.getElementsByClassName("outputMain")[0];
-        let numberInput = document.getElementsByClassName("numberInput")[0];
+
 
         //スプレッドシートからその受付番号の予定時間を文字列で取得
         let numberInputText = durations[parseInt(numberInput.value)];
@@ -40,17 +41,17 @@ function startSearch() {
     });
 }
 
+function openUnivSite() {
+    location.href = "https://www.ritsumei.ac.jp/";
+}
+
 function saveData() {
     if (document.getElementsByClassName("numberInput")[0].value == "") return;
-
     localStorage.setItem("myNumber",myNumber.toString());
 }
 
 function loadData() {
-    //初回入力の時
     if (localStorage.getItem("myNumber") == null) return;
-
-    //一度保存していた場合
     myNumber = parseInt(localStorage.getItem("myNumber"));
 }
 

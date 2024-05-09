@@ -11,12 +11,15 @@
     </head>
     <body onload="onLoad()">
         <div>
+            <div id="particles-js"></div>
+            <img src="./img/ritsumeikan-logo.png" alt="立命館大学ロゴ" class="logo" onclick="openUnivSite()">
             <h1 class="title">自分の予定時間を検索</h1>
             <div class="content">
-                <h4>ここに自分の受付番号を入力してください</h4>
+                <h4>ここに自分の受付番号を入力してください(半角数字でお願いします)</h4>
                 <input type="text" class="numberInput">
                 <br>
-                <button onclick="startSearch()" id="btn_1">調べる</button>
+                <a class="btn btn-border" onclick="startSearch()" id="btn_1"><span>調べる</span></a>
+
                 <h3 class="outputExplanation">↓↓ここに予定時刻が表示されます↓↓</h3>
                 <h3 class="output">
                     <span style="color: red;" class="outputMain">00:00分から00:00分</span>にお越しください</h3>
