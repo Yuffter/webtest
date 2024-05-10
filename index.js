@@ -1,4 +1,4 @@
-const apiURL = "https://script.google.com/macros/s/AKfycbzlISXKYbNZHT8c31dZUr3zqx1AGciFpD4QqTcHDlLhApN3zYCIJlzFq5QYSZwpFa9MSA/exec";
+const apiURL = "https://script.google.com/macros/s/AKfycby8NLCcS6R1HqS5LqCV8eTjoo-2VCStiCnzCUyAGh_EqvZJpUm7Be3dEnPbRqAlXsKFRg/exec";
 const interval = 10;
 let myNumber = -1;
 
