@@ -1,20 +1,58 @@
 const apiURL = "https://script.google.com/macros/s/AKfycby8NLCcS6R1HqS5LqCV8eTjoo-2VCStiCnzCUyAGh_EqvZJpUm7Be3dEnPbRqAlXsKFRg/exec";
 const interval = 10;
 let myNumber = -1;
+let timeStr = "";
+let durations = {};
+let isInformationWaiting = false;
 
 function startSearch() {
-    let numberInput = document.getElementsByClassName("numberInput")[0];
-    if (numberInput.value == "") return;
-
-    myNumber = parseInt(numberInput.value);
-    saveData();
-
     //要素取得
+    let numberInput = document.getElementsByClassName("numberInput")[0];
+
+    //未入力の場合、処理を打ち切る
+    if (numberInput.value == "") return;
+    if (numberInput.value == "_reset") {
+        localStorage.clear();
+        return;
+    }
+    myNumber = parseInt(numberInput.value);
+    
+    saveMyNumber();
+
+    //スプレッドシートからその受付番号の予定時間を文字列で取得
+    let numberInputText = durations[parseInt(myNumber)];
+
+    let beforeHourAndMinute = numberInputText.split("-").map(s => parseInt(s));
+    let afterHourAndMinute = beforeHourAndMinute.slice();
+    afterHourAndMinute[1] += interval;
+    if (afterHourAndMinute[1] >= 60) {
+        afterHourAndMinute[1] -= 60;
+        afterHourAndMinute[0]++;
+    }
+
+    timeStr = `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')}` + 
+    " ~ " +
+    `${afterHourAndMinute[0]}:${afterHourAndMinute[1].toString().padStart(2,'0')}`;
+
+    showEstimatedTime(timeStr);
+    saveMyEstimatedTime();
+}
+
+function openUnivSite() {
+    location.href = "https://www.ritsumei.ac.jp/";
+}
+
+//予定時刻を表示する関数
+function showEstimatedTime(estimatedTimeStr) {
     let outputText = document.getElementsByClassName("output")[0];
     let welcomeText = document.getElementsByClassName("welcome")[0];
 
-    let durations = {};
+    outputText.style.border = "double 5px black";
+    welcomeText.innerHTML = "にお越しください";
+    outputText.innerText = estimatedTimeStr;
+}
 
+function getDurationsFromSheet() {
     //APIからデータを取得
     fetch(apiURL)
     .then(function (fetch_data) {
@@ -25,39 +63,32 @@ function startSearch() {
             durations[json[i].number] = json[i].duration;
         }
 
-        //スプレッドシートからその受付番号の予定時間を文字列で取得
-        let numberInputText = durations[parseInt(numberInput.value)];
-
-        let beforeHourAndMinute = numberInputText.split("-").map(s => parseInt(s));
-        let afterHourAndMinute = beforeHourAndMinute.slice();
-        afterHourAndMinute[1] += interval;
-        if (afterHourAndMinute[1] >= 60) {
-            afterHourAndMinute[1] -= 60;
-            afterHourAndMinute[0]++;
+        if (myNumber != -1) {
+            showEstimatedTime(timeStr);
         }
-
-        outputText.style.border = "double 5px black";
-        welcomeText.innerHTML = "にお越しください";
-        outputText.innerText = 
-        `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')} ~ ${afterHourAndMinute[0]}:${afterHourAndMinute[1].toString().padStart(2,'0')}`;
     });
 }
 
-function openUnivSite() {
-    location.href = "https://www.ritsumei.ac.jp/";
-}
-
-function saveData() {
+function saveMyNumber() {
     if (document.getElementsByClassName("numberInput")[0].value == "") return;
     localStorage.setItem("myNumber",myNumber.toString());
 }
 
+function saveMyEstimatedTime() {
+    localStorage.setItem("myEstimatedTime",timeStr);
+}
+
 function loadData() {
-    if (localStorage.getItem("myNumber") == null) return;
-    myNumber = parseInt(localStorage.getItem("myNumber"));
+    if (localStorage.getItem("myNumber") != null) myNumber = parseInt(localStorage.getItem("myNumber"));
+    if (localStorage.getItem("myEstimatedTime") != null) timeStr = localStorage.getItem("myEstimatedTime");
 }
 
 function onLoad() {
     loadData();
+    if (myNumber != -1) {
+        let welcomeText = document.getElementsByClassName("welcome")[0];
+        welcomeText.innerText = "情報の更新を行っています...";
+    }
+    getDurationsFromSheet();
     document.getElementsByClassName("numberInput")[0].value = (myNumber == -1 ? "" : myNumber.toString());
 }
