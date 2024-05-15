@@ -1,5 +1,5 @@
 const apiURL = "https://script.google.com/macros/s/AKfycby8NLCcS6R1HqS5LqCV8eTjoo-2VCStiCnzCUyAGh_EqvZJpUm7Be3dEnPbRqAlXsKFRg/exec";
-const interval = 10;
+const interval = 15;
 let myNumber = -1;
 let timeStr = "";
 let durations = {};
