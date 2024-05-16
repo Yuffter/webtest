@@ -21,12 +21,6 @@
   text-underline-offset: 2px;
 }
 
-.halfNumber {
-  background-color: rgb(254, 237, 219);
-  text-decoration: underline 2px rgb(252, 202, 137);
-  text-underline-offset: 2px;
-}
-
 .numberInput {
     margin-left: 300px;
     text-align: center;
