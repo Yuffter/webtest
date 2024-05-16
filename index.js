@@ -32,9 +32,7 @@ function startSearch() {
     let beforeHourAndMinute = numberInputText.split(",").map(s => parseInt(s));
     let afterHourAndMinute = calculateAfterTime(beforeHourAndMinute).slice();
 
-    timeStr = `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')}` + 
-    " ~ " +
-    `${afterHourAndMinute[0]}:${afterHourAndMinute[1].toString().padStart(2,'0')}`;
+    timeStr = `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')}`;
 
     showEstimatedTime(timeStr);
     saveMyEstimatedTime();
@@ -51,7 +49,7 @@ function showEstimatedTime(estimatedTimeStr) {
     let welcomeText = document.getElementsByClassName("welcome")[0];
 
     outputText.style.border = "double 5px black";
-    welcomeText.innerHTML = "にお越しください";
+    welcomeText.innerHTML = "までにお越しください";
     outputText.innerText = estimatedTimeStr;
 }
 
