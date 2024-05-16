@@ -4,6 +4,14 @@ let myNumber = -1;
 let timeStr = "";
 let durations = {};
 
+// 全角数字を半角に変換
+function toHalf(str) {
+  str = str.replace(/[０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+  return str;
+}
+
 function startSearch() {
     //要素取得
     let numberInput = document.getElementsByClassName("numberInput")[0];
@@ -14,7 +22,9 @@ function startSearch() {
         localStorage.clear();
         return;
     }
-    myNumber = parseInt(numberInput.value);
+    myNumber = parseInt(toHalf(numberInput.value));
+
+    console.log(myNumber);
     
     saveMyNumber();
 
