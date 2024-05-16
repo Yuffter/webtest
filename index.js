@@ -21,7 +21,7 @@ function startSearch() {
     //スプレッドシートからその受付番号の予定時間を文字列で取得
     let numberInputText = durations[parseInt(myNumber)];
 
-    let beforeHourAndMinute = numberInputText.split("-").map(s => parseInt(s));
+    let beforeHourAndMinute = numberInputText.split(",").map(s => parseInt(s));
     let afterHourAndMinute = calculateAfterTime(beforeHourAndMinute).slice();
 
     timeStr = `${beforeHourAndMinute[0]}:${beforeHourAndMinute[1].toString().padStart(2,'0')}` + 
