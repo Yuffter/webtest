@@ -23,8 +23,6 @@ function startSearch() {
         return;
     }
     myNumber = parseInt(toHalf(numberInput.value));
-
-    console.log(myNumber);
     
     saveMyNumber();
 
